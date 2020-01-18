@@ -26,7 +26,7 @@ def main():
 
 def init_configuration():
     configuration['program-path'] = sys.path[0]
-    configuration['configuration-path'] = expand_path('`/default.autobuildrc')
+    configuration['configuration-path'] = expand_path('~/.autobuildrc')
     configuration['program-version'] = 'v0.0'
     configuration['program-ignored-arg-header'] = '+'
     configuration['cc-base-flags'] = '{source} -o {target}'

@@ -22,7 +22,7 @@ program-description=A simple cross-platform build script for C++.
 cc=g++
 cc-flags=-g -Wall -static-libgcc -std=c++17
 
-make=mingw32-make
+make=make
 make-flags=
 makefile-template=`/Makefile.template
 
