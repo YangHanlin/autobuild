@@ -53,6 +53,8 @@ def commandline_modify_configuration():
     args = vars(parser.parse_args())
     for key in args:
         configuration[key] = args[key]
+    configuration['cc_flags'] = configuration['cc_flags'][len(configuration['program-ignored-arg-header']):]
+    configuration['make_flags'] = configuration['make_flags'][len(configuration['program-ignored-arg-header']):]
 
 
 def init_parser():
@@ -120,7 +122,7 @@ def make_command():
     return '{} {} {}'.format(
         configuration['make'],
         configuration['make-flags'],
-        configuration['make_flags'][len(configuration['program-ignored-arg-header']):]
+        configuration['make_flags']
     ).format(**configuration)
 
 
@@ -129,7 +131,7 @@ def cc_command():
         configuration['cc'],
         configuration['cc-base-flags'],
         configuration['cc-flags'],
-        configuration['cc_flags'][len(configuration['program-ignored-arg-header']):]
+        configuration['cc_flags']
     ).format(**configuration)
 
 

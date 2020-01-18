@@ -5,23 +5,23 @@ ADDITIONAL_FLAGS = {cc-flags} {cc_flags}
 
 OS_TYPE = UNKNOWN
 
-IFEQ ($(OS), Windows_NT)
+ifeq ($(OS), Windows_NT)
 	OS_TYPE = WIN32
-ELSE
+else
 	UNAME = $(SHELL uname -s)
-	IFEQ ($(OS), Linux)
+	ifeq ($(OS), Linux)
 		OS_TYPE = LINUX
-	ENDIF
-	IFEQ ($(OS), Darwin)
+	endif
+	ifeq ($(OS), Darwin)
 		OS_TYPE = OSX
-	ENDIF
-ENDIF
+	endif
+endif
 
-IFEQ ($(OS_TYPE), WIN32)
+ifeq ($(OS_TYPE), WIN32)
 	REMOVE = del
-ELSE
+else
 	REMOVE = rm
-ENDIF
+endif
 
 {target}: {-object-files}
 	$(CC) {-object-files} -o {target} $(ADDITIONAL_FLAGS)
