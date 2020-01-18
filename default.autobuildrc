@@ -25,3 +25,6 @@ cc-flags=-g -Wall -static-libgcc -std=c++17
 make=mingw32-make
 make-flags=
 makefile-template=`/Makefile.template
+
+cpp-units=.cpp .cc .cxx .c++ .c
+cpp-headers=.hpp .hh .hxx .h .ii .ino .i

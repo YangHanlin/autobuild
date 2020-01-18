@@ -2,6 +2,7 @@ import sys
 import os
 import argparse
 import shutil
+import subprocess
 
 
 def main():
@@ -29,6 +30,7 @@ def init_configuration():
     configuration['program-version'] = 'v0.0'
     configuration['program-ignored-arg-header'] = '+'
     configuration['cc-base-flags'] = '{source} -o {target}'
+    configuration['temp-configuration-keys'] = []
 
 
 def load_configuration():
@@ -73,7 +75,45 @@ def init_parser():
 
 
 def gen_makefile():
-    print('Going to generate Makefile from {}'.format(expand_path(configuration['makefile-template'])))
+    template = expand_path(configuration['makefile-template'])
+    detect_environment()
+    with open(template, 'r', encoding='utf-8') as file:
+        head, repeat, tail = file.read().split('# -autobuild-repeat\n')
+    with open('Makefile', 'w', encoding='utf-8') as file:
+        file.write(head.format(**configuration))
+        for source in configuration['-sources'].split():
+            for key in configuration['-per-source'][source]:
+                configuration[key] = configuration['-per-source'][source][key]
+            file.write(repeat.format(**configuration))
+            for key in configuration['-per-source'][source]:
+                del configuration[key]
+        file.write(tail.format(**configuration))
+    clear_temp_configuration_keys()
+
+
+def detect_environment():
+    cpp_units = filter_cpp_units(get_files(configuration['change_dir']))
+    sources = []
+    object_files = []
+    per_source = {}
+    for filename, cpp_unit in cpp_units:
+        sources.append(filename)
+        object_file = filename[:len(filename) - len(cpp_unit)] + '.o'
+        object_files.append(object_file)
+        cc_solved_dependencies = subprocess.run(
+            [configuration['cc'], filename, '-MM'], capture_output=True, check=True
+        ).stdout.decode().replace('\r\n', '\n').strip()  # loses compatibility?
+        per_source[filename] = {
+            '-object-file': object_file,
+            '-source': filename,
+            '-cc-solved-dependencies': cc_solved_dependencies
+        }
+    configuration['-sources'] = ' '.join(sources)
+    configuration['-object-files'] = ' '.join(object_files)
+    configuration['-per-source'] = per_source
+    configuration['temp-configuration-keys'].extend(
+        ['-sources', '-object-files', '-per-source']
+    )
 
 
 def make_command():
@@ -93,6 +133,24 @@ def cc_command():
     ).format(**configuration)
 
 
+def get_files(path):
+    res = []
+    for filename in os.listdir(path):
+        if os.path.isfile('/'.join((path, filename))):
+            res.append(filename)
+    return res
+
+
+def filter_cpp_units(files):
+    cpp_units = configuration['cpp-units'].split()
+    res = []
+    for filename in files:
+        for cpp_unit in cpp_units:
+            if filename.endswith(cpp_unit):
+                res.append([filename, cpp_unit])
+    return res
+
+
 def is_project():
     return os.path.exists('.project')
 
@@ -109,6 +167,12 @@ def show_error_for_direct_run(recommended):
 
 def expand_path(path):
     return os.path.expanduser(path.replace('`', configuration['program-path']))
+
+
+def clear_temp_configuration_keys():
+    for key in configuration['temp-configuration-keys']:
+        del configuration[key]
+    configuration['temp-configuration-keys'].clear()
 
 
 if __name__ == '__main__':
