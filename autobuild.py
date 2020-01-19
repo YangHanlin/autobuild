@@ -105,7 +105,7 @@ def detect_environment():
         object_file = filename[:len(filename) - len(cpp_unit)] + '.o'
         object_files.append(object_file)
         cc_solved_dependencies = subprocess.run(
-            [configuration['cc'], filename, '-MM'], capture_output=True, check=True
+            [configuration['cc'], filename, '-MM'], stdout=subprocess.PIPE, check=True
         ).stdout.decode().replace('\r\n', '\n').strip()  # loses compatibility?
         per_source[filename] = {
             '-object-file': object_file,
