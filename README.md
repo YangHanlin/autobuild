@@ -1,5 +1,7 @@
 # Autobuild: A simple cross-platform build script for C++
 
+[![Issues](https://img.shields.io/github/issues/YangHanlin/autobuild?style=flat-square)](https://github.com/YangHanlin/autobuild/issues) [![Pull requests](https://img.shields.io/github/issues-pr/YangHanlin/autobuild?style=flat-square)](https://github.com/YangHanlin/autobuild/pulls) [![License](https://img.shields.io/github/license/YangHanlin/autobuild?style=flat-square)](LICENSE)
+
 **Autobuild** is a simple Python script to build a simple C++ program based on one file or all files in the same directory, which aims to fit the interfaces of editors, such as Visual Studio Code.
 
 ## Dependencies
