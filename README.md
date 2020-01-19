@@ -29,7 +29,7 @@
 
 ## Usage
 
-```bash
+```
 $ autobuild.py --help
 usage: autobuild.py [-h] -t TARGET [-d DIR] [-c FLAGS] [-m FLAGS] [-V] SOURCE
 
