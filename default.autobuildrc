@@ -1,0 +1,30 @@
+# Autobuild Configuration File
+
+# If you have never opened this file, it must have been kept as default
+# configuration.
+#
+# Autobuild configuration files are made up with keys and their values.
+# Use the following syntax to define a key and its value:
+#
+#     key[=value]
+#
+# Values (along with equality signs) can be omitted, and in this case the
+# value is considered as an empty string.
+#
+# Blank lines and lines beginning with '#' will be ignored.
+#
+# Paths will be preprocessed and can contain the following pre-defined
+# variables: (1) '~' for home directory of current user and (2) '`' for
+# installation directory of Autobuild.
+
+program-description=A simple cross-platform build script for C++.
+
+cc=g++
+cc-flags=-g -Wall -static-libgcc -std=c++17
+
+make=make
+make-flags=
+makefile-template=`/Makefile.template
+
+cpp-units=.cpp .cc .cxx .c++ .c
+cpp-headers=.hpp .hh .hxx .h .ii .ino .i
