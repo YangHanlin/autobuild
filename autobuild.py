@@ -29,7 +29,7 @@ def main():
 def init_configuration():
     configuration['program-path'] = sys.path[0]
     configuration['configuration-path'] = expand_path('~/.autobuildrc')
-    configuration['program-version'] = 'v0.0'
+    configuration['program-version'] = 'v1.0'
     configuration['program-ignored-arg-header'] = '+'
     configuration['cc-base-flags'] = '{source} -o {target}'
     configuration['temp-configuration-keys'] = []
@@ -73,7 +73,11 @@ def init_parser():
     parser.add_argument('-m', '--make-flags', metavar='FLAGS', default='',
                         help='additional flags passed to Make')
     parser.add_argument('-V', '--version', action='version',
-                        version='{} {}'.format(parser.prog, configuration['program-version']),
+                        version='{} {} from {}'.format(
+                            parser.prog,
+                            configuration['program-version'],
+                            configuration['program-path']
+                        ),
                         help='show version information and exit')
     return parser
 
