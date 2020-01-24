@@ -73,7 +73,11 @@ def init_parser():
     parser.add_argument('-m', '--make-flags', metavar='FLAGS', default='',
                         help='additional flags passed to Make')
     parser.add_argument('-V', '--version', action='version',
-                        version='{} {}'.format(parser.prog, configuration['program-version']),
+                        version='{} {} from {}'.format(
+                            parser.prog,
+                            configuration['program-version'],
+                            configuration['program-path']
+                        ),
                         help='show version information and exit')
     return parser
 
