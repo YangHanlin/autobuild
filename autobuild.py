@@ -167,12 +167,6 @@ def makefile_exists():
     return os.path.exists('Makefile')
 
 
-def show_error_for_direct_run(recommended):
-    print('Error: this script cannot be directly run', file=sys.stderr, end='')
-    if recommended is not None:
-        print('; try \'{}\' instead'.format(recommended), file=sys.stderr)
-
-
 def expand_path(path):
     return os.path.expanduser(path.replace('`', configuration['program-path']))
 
