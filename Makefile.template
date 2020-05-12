@@ -9,10 +9,10 @@ ifeq ($(OS), Windows_NT)
 	OS_TYPE = WIN32
 else
 	UNAME = $(SHELL uname -s)
-	ifeq ($(OS), Linux)
+	ifeq ($(UNAME), Linux)
 		OS_TYPE = LINUX
 	endif
-	ifeq ($(OS), Darwin)
+	ifeq ($(UNAME), Darwin)
 		OS_TYPE = OSX
 	endif
 endif
@@ -31,7 +31,7 @@ endif
 	$(CC) {-source} -o {-object-file} -c $(ADDITIONAL_FLAGS)
 
 # -autobuild-repeat
-.PHONY: clean
+.PHONY : clean
 
 clean:
 	-$(REMOVE) {target} {-object-files}
