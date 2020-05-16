@@ -31,7 +31,7 @@ endif
 	$(CC) {-source} -o {-object-file} -c $(ADDITIONAL_FLAGS)
 
 # -autobuild-repeat
-.PHONY : clean
+.PHONY: clean
 
 clean:
 	-$(REMOVE) {target} {-object-files}
