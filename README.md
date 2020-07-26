@@ -12,6 +12,35 @@
 
 ## Installation & Configuration
 
+### Installation
+
+#### Windows with Scoop
+
+It is recommended on Windows to install Autobuild with [Scoop](https://scoop.sh/).
+
+1. Add the bucket [Orihime 1](https://github.com/YangHanlin/orihime-first) to Scoop (if you have never done so):
+
+   ```
+   scoop bucket add orihime https://github.com/YangHanlin/orihime-first
+   ```
+
+2. Install Autobuild with one command:
+
+   ```
+   scoop install orihime/autobuild
+   ```
+
+3. Run command `autobuild` (instead of `autobuild.py`, because Scoop actually creates a shim named `autobuild`) to check, which, if configured correctly, will result in the following output:
+
+   ```
+   usage: autobuild.py [-h] -t TARGET [-d DIR] [-c FLAGS] [-m FLAGS] [-V] SOURCE
+   autobuild.py: error: the following arguments are required: SOURCE, -t/--target
+   ```
+
+#### Not Windows, or without Scoop
+
+If you do not have Scoop installed or you are not working on Windows, you can also perform installation steps manually.
+
 1. Clone (which is recommended because it enables you to stay updated) or download the repository;
 
 2. Add path of the directory containing downloaded files into the `PATH` environment variable;
@@ -23,7 +52,9 @@
    autobuild.py: error: the following arguments are required: SOURCE, -t/--target
    ```
 
-4. Find the configuration file `.autobuildrc` in your user home directory (`%USERPROFILE%` on Windows or `$HOME` on \*nix), open and edit it:
+### Configuration
+
+Find the configuration file `.autobuildrc` in your user home directory (`%USERPROFILE%` on Windows or `$HOME` on \*nix), open and edit it:
 
    - Check whether the value of `cc`, which indicates the command to invoke the compiler, by default `g++`, works as a compiler and as desired. If your desired compiler is not compatible with `g++`, modify `cc-flags` as well to fit your compiler’s interface.
 
