@@ -1,7 +1,8 @@
 # Autobuild Configuration File
 
-# If you have never opened this file, it must have been kept as default
-# configuration.
+# If you have never opened this file, it is an exact copy of the default
+# configuration file (default.autobuildrc in Autobuild installation
+# directory.
 #
 # Autobuild configuration files are made up with keys and their values.
 # Use the following syntax to define a key and its value:
