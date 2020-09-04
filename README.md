@@ -18,10 +18,10 @@
 
 It is recommended on Windows to install Autobuild with [Scoop](https://scoop.sh/).
 
-1. Add the bucket [Orihime 1](https://github.com/YangHanlin/orihime-first) to Scoop (if you have never done so):
+1. Add the bucket [Orihime 1](https://github.com/YangHanlin/OrihimeFirst) to Scoop (if you have never done so):
 
    ```
-   scoop bucket add orihime https://github.com/YangHanlin/orihime-first
+   scoop bucket add orihime https://github.com/YangHanlin/OrihimeFirst
    ```
 
 2. Install Autobuild with one command:
