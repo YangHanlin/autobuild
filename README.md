@@ -20,19 +20,19 @@ It is recommended on Windows to install Autobuild with [Scoop](https://scoop.sh/
 
 1. Add the bucket [Orihime 1](https://github.com/YangHanlin/OrihimeFirst) to Scoop (if you have never done so):
 
-   ```
+   ```powershell
    scoop bucket add orihime https://github.com/YangHanlin/OrihimeFirst
    ```
 
 2. Install Autobuild with one command:
 
-   ```
-   scoop install orihime/autobuild
+   ```powershell
+   scoop install orihime/autobuild-insider  # stable version not available yet
    ```
 
 3. Run command `autobuild` (instead of `autobuild.py`, because Scoop actually creates a shim named `autobuild`) to check, which, if configured correctly, will result in the following output:
 
-   ```
+   ```powershell
    usage: autobuild.py [-h] -t TARGET [-d DIR] [-c FLAGS] [-m FLAGS] [-V] SOURCE
    autobuild.py: error: the following arguments are required: SOURCE, -t/--target
    ```
